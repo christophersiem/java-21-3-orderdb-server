@@ -13,8 +13,11 @@ import java.util.UUID;
 @Service
 public class OrderService {
 
-    private final ProductService productService;
-    private final OrderRepository orderRepository;
+    private ProductService productService;
+    private OrderRepository orderRepository;
+
+    public OrderService() {
+    }
 
     @Autowired
     public OrderService(ProductService productService, OrderRepository orderRepository) {
@@ -29,12 +32,24 @@ public class OrderService {
                     .orElseThrow(() -> new IllegalArgumentException("Product with ID " + productId + " does not exist"));
             productsToOrder.add(product);
         }
-        String id = UUID.randomUUID().toString();
+        String id = generateOrderId();
         Order order = new Order(id, productsToOrder);
         return orderRepository.addOrder(order);
     }
 
+    public String generateOrderId() {
+        return UUID.randomUUID().toString();
+    }
+
     public List<Order> getAllOrders() {
         return orderRepository.getAllOrders();
+    }
+
+    public void setProductService(ProductService productService) {
+        this.productService = productService;
+    }
+
+    public void setOrderRepository(OrderRepository orderRepository) {
+        this.orderRepository = orderRepository;
     }
 }
