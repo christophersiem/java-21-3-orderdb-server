@@ -18,6 +18,9 @@ class OrderControllerTest {
     @Resource
     private TestRestTemplate testRestTemplate;
 
+    /**
+     * SpringBootTest.WebEnvironment.DEFINED_PORT use always default port 8080
+     */
     private final static String BASE_URL = "http://localhost:8080";
 
     @Test
