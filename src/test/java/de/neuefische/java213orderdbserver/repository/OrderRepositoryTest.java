@@ -32,4 +32,36 @@ class OrderRepositoryTest {
         ))));
     }
 
+    @Test
+    @DisplayName("getAllOrders should return all available orders")
+    public void testGetAllOrders(){
+        //Given
+        OrderRepository orderRepository = new OrderRepository();
+        orderRepository.addOrder(new Order("1", List.of(
+                new Product("1", "piano"),
+                new Product("2", "guitar")
+        )));
+        orderRepository.addOrder(new Order("2", List.of(
+                new Product("1", "piano"),
+                new Product("3", "triangle")
+        )));
+
+        //When
+        List<Order> actual = orderRepository.getAllOrders();
+
+        //Then
+        List<Order> expected = List.of(
+                new Order("1", List.of(
+                        new Product("1", "piano"),
+                        new Product("2", "guitar")
+                )),
+                new Order("2", List.of(
+                        new Product("1", "piano"),
+                        new Product("3", "triangle")
+                ))
+        );
+
+        assertEquals(expected, actual);
+    }
+
 }

@@ -33,4 +33,8 @@ public class OrderService {
         Order order = new Order(id, productsToOrder);
         return orderRepository.addOrder(order);
     }
+
+    public List<Order> getAllOrders() {
+        return orderRepository.getAllOrders();
+    }
 }
