@@ -4,6 +4,7 @@ import de.neuefische.java213orderdbserver.model.Product;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class ProductRepository {
@@ -15,5 +16,13 @@ public class ProductRepository {
     );
     public List<Product> getAllProducts() {
         return products;
+    }
+
+    public Optional<Product> getProductById(String id) {
+        for (Product product : products) {
+            if(product.getId().equals(id)){
+                return Optional.of(product);
+            }
+        } return Optional.empty();
     }
 }
