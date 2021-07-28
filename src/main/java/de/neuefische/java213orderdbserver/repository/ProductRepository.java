@@ -3,6 +3,7 @@ package de.neuefische.java213orderdbserver.repository;
 import de.neuefische.java213orderdbserver.model.Product;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,7 +16,7 @@ public class ProductRepository {
             new Product("3", "triangle")
     );
     public List<Product> getAllProducts() {
-        return products;
+         return products;
     }
 
     public Optional<Product> getProductById(String id) {
