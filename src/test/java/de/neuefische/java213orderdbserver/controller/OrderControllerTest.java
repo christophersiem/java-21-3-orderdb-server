@@ -60,14 +60,14 @@ class OrderControllerTest {
 
     private Order createAnOrder() {
         // orderService will be forced to return always 1 when calling generateOrderId
-        doReturn("1").when(orderService).generateOrderId();
+        doReturn("123").when(orderService).generateOrderId();
 
         String addOrderUrl = String.format("%s/order", BASE_URL);
         ResponseEntity<Order> orderAddedEntity = testRestTemplate.postForEntity(addOrderUrl, List.of("1"), Order.class);
 
         assertEquals(HttpStatus.OK, orderAddedEntity.getStatusCode());
 
-        Order expectedOrder = new Order("1", List.of(
+        Order expectedOrder = new Order("123", List.of(
                 new Product("1", "piano")
         ));
         assertEquals(expectedOrder, orderAddedEntity.getBody());
