@@ -33,11 +33,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class OrderControllerMockMVCTest {
 
     @MockBean
-    ProductService productService;
+    private ProductService productService;
+
     @Resource
     private MockMvc mockMvc;
+
     @SpyBean()
     private OrderService orderServiceMock;
+
     @SpyBean
     private OrderRepository orderRepository;
 
